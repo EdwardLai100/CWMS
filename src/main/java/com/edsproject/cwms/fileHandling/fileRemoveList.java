@@ -6,8 +6,9 @@
  *                       CHANGE HISTORY
  * DATE              AUTHOR                    DESCRIPTION
  * 8 JUNE 2023       EDWARD LAI                INITIAL RELEASE
+ * 11 JUNE 2023      EDWARD LAI                ADD COSTING FEATURE, CODE RESTRUCTURE, ENHANCE FILE IO
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-package com.edsproject.cwms.config;
+package com.edsproject.cwms.fileHandling;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +21,7 @@ import java.util.List;
 public class fileRemoveList {
 
     public void remove(String numberPlate) {
-        File file = new File("C:/CWMS/_storage/items.txt");
+        File file = new File("C:/CWMS/_storage/items.csv");
         if (!file.exists()) {
             System.out.println("File not found.");
             return;

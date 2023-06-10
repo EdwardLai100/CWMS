@@ -81,6 +81,7 @@
         <th>Segment</th>
         <th>Type of wash</th>
         <th>Notes</th>
+        <th>Price Adjustment (+/-)</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -90,7 +91,7 @@
         <td><input type="text" id="NumberPlate"></td>
         <td>
           <select id="Segment">
-            <option value="Sedan / Hatchback">Sedan/Hatchback</option>
+            <option value="Sedan / Hatchback">Sedan / Hatchback</option>
             <option value="SUV">SUV</option>
             <option value="MPV">MPV</option>
             <option value="Sports Car">Sports Car</option>
@@ -101,9 +102,12 @@
           <select id="TypeofWash">
             <option value="Normal">Normal</option>
             <option value="Advance">Advance</option>
+            <option value="Wash Wax and Polish">Wash Wax and Polish</option>
+            <option value="Ceramic Coating">Ceramic Coating</option>
             <option value="Customized">Customized</option>
           </select>
         </td>
+        <td><input type="text" id="PriceAdjustment"></td>
         <td><input type="text" id="Notes"></td>
         <td>
           <form action="/startQueue" method="post">
@@ -139,6 +143,7 @@
             <th>Segment</th>
             <th>Type of wash</th>
             <th>Notes</th>
+            <th>Nett Price</th>
             <th>Status</th>
           </tr>
       </thead>
@@ -152,12 +157,14 @@
       var itemInput1 = document.getElementById("NumberPlate");
       var dropdown1 = document.getElementById("Segment");
       var dropdown2 = document.getElementById("TypeofWash");
-      var itemInput3 = document.getElementById("Notes");
+      var itemInput3 = document.getElementById("PriceAdjustment");
+      var itemInput4 = document.getElementById("Notes");
       var results = itemInput0.value + "," + 
           itemInput1.value.toUpperCase() + "," +
           dropdown1.options[dropdown1.selectedIndex].value + "," +
           dropdown2.options[dropdown2.selectedIndex].value + "," +
-          itemInput3.value;
+          itemInput3.value + "," +
+          itemInput4.value;
       console.log("results="+results);
       saveItemToServer(results);
     }
@@ -204,7 +211,7 @@
     }
   </script>
   <script>
-      readTextFile("items.txt");
+      readTextFile("items.csv");
   </script>
 </body>
 </html>

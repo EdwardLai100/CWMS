@@ -7,12 +7,13 @@
  * CHANGE HISTORY
  * DATE              AUTHOR                    DESCRIPTION
  * 8 JUNE 2023       EDWARD LAI                INITIAL RELEASE
+ * 11 JUNE 2023      EDWARD LAI                ADD COSTING FEATURE, CODE RESTRUCTURE, ENHANCE FILE IO
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 package com.edsproject.cwms;
 
-import com.edsproject.cwms.config.fileOutput;
-import com.edsproject.cwms.config.fileRemoveList;
+import com.edsproject.cwms.fileHandling.fileIO;
+import com.edsproject.cwms.fileHandling.fileRemoveList;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class mainModule {
 
-    fileOutput fileoutput = new fileOutput();
+    fileIO fileoutput = new fileIO();
     fileRemoveList fileremovelist = new fileRemoveList();
 
     public static void main(String[] args) {
@@ -51,7 +52,7 @@ public class mainModule {
 
         @PostMapping("/startQueue")
         public ModelAndView startQueue(@RequestParam(required = false, name = "startQueue") String item) {
-            fileoutput.output(item + ",Queued");
+            fileoutput.output_items(item + ",Queued");
             return new ModelAndView("queueManagement");
         }
 
