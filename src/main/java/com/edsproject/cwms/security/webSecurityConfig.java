@@ -19,7 +19,7 @@ public class webSecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/startQueue", "/removeQueue","/revertFlow","/nextFlow");
+        return (web) -> web.ignoring().requestMatchers("/startQueue", "/removeQueue","/revertFlow","/nextFlow","/generateInvoice","/download");
     }
 
 }

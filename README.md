@@ -1,23 +1,27 @@
 # PROJ005_CarWashManagementSystem
 
-Hi there! This is a simple Java Spring Application that allows free download, republishing, and modification any per your requirements, fully open source.
+Hi there! This is a simple Java Spring Boot Application that allows free download, republishing, and modification any per your requirements, fully open source.
 
-This is an ongoing project.
+This is an ongoing personal project.
 
-The use-case functional feature will cover:
+The functional use-case feature will cover:
 1) Login
-2) Wash Process Queue Management, Allow cars to queue in or out before the process started.
-3) Wash Process Flow Management, Allows the user to manage the car on-queue flow with the below state-change:
+2) Wash Process Queue Management, Allow cars to queue in or out before the process started, the cost is immediately calculated upon queueing.
+3) Wash Process Flow Management, which Allows the user to manage the car on-queue flow with a defined flow list. By default, the program will initiate with the below flow if the flow list is not found:
 3.1) Queued > Washing > Drying > Interior > Detailing > Completed
-4) Cost management, which will be based on what type of wash service and the segment of cars, to generate a simple invoice and allows pdf download.
-5) Audit History, Saved all the cars that is being queued and completed the service in 2 separated view list.
+4) Cost management, to generate a simple invoice and allows pop-up PDF download based on the cars in the queue list.
+5) Audit History, Saved all the cars that are being queued and completed the service in 2 separate view lists.
 
-The languages, framework & microservices, and architecture includes:
-1) Java (JDK17), JavaScript, HTML, CSS, Groovy
-2) Java Spring 3.1.0, Java Spring Security
+The languages, framework & microservices, architectures, and libraries include:
+-Java (JDK17), JavaScript, HTML, CSS, Groovy
+-Java Spring Boot 3.1.0, Java Spring Security (for login), Spring MVC (for resource configuration)
+-Apache PDFBox
 
-Future proposal:
-Includes JDBC for membership and history storing feature
+Future release:
+-Introducing membership system and implementing JDBC for membership and history storing feature
+-Enhance flow management UI where provide a "Release" feature to move to store the car from the queue list into history and remove it from the queue list.
+-Introduce role access based on Spring Security, allow Admin role to configure price list and flow list thru UI
+-Introduce MVC on text/title naming configuration thru the .properties file.
 
 To run the project:
 You may run thru Command Prompt / PowerShell / Terminal, or any IDE with SpringBoot integrated.
