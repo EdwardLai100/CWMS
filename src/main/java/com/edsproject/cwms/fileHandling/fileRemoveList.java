@@ -1,13 +1,11 @@
-/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/**
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * OWNER: EDWARD LAI
  * PROJECT DEVELOPER: EDWARD LAI
  * APPLICATION: CAR WASH MANAGEMENT SYSTEM
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *                       CHANGE HISTORY
- * DATE              AUTHOR                    DESCRIPTION
- * 8 JUNE 2023       EDWARD LAI                INITIAL RELEASE
- * 11 JUNE 2023      EDWARD LAI                ADD COSTING FEATURE, CODE RESTRUCTURE, ENHANCE FILE IO
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ */
+
 package com.edsproject.cwms.fileHandling;
 
 import java.io.File;
@@ -20,10 +18,12 @@ import java.util.List;
 
 public class fileRemoveList {
 
+    boolean _debug = true; //Next release to change it to read IO config for ease setting
+
     public void remove(String numberPlate) {
         File file = new File("C:/CWMS/_storage/items.csv");
         if (!file.exists()) {
-            System.out.println("File not found.");
+            if (_debug) System.out.println("fileHandling/fileRemoveList/remove=File not found.");
             return;
         }
 
@@ -46,9 +46,9 @@ public class fileRemoveList {
 
             if (removed) {
                 Files.write(path, updatedLines);
-                System.out.println("Line removed successfully.");
+                if (_debug) System.out.println("fileHandling/fileRemoveList/remove=Line removed successfully.");
             } else {
-                System.out.println("No matching line found.");
+                if (_debug) System.out.println("fileHandling/fileRemoveList/remove=No matching line found.");
             }
         } catch (IOException e) {
         }

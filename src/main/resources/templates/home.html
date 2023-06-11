@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Main Page</title>
-    <style>
-        body {
-          font-family: Arial, sans-serif;
-        }
-
-    </style>
+  <title>Main Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .enlarged-button {
+      width: 330px;
+      height: 60px;
+      font-size: 18px;
+      margin: 10px;
+    }
+  </style>
 </head>
 <body>
-<h1>Edwards Car Wash Management System</h1>
-<button type="button" onclick="redirectToAnotherPage()">Queue Management</button>
-<script>
-		  function redirectToAnotherPage() {
-        window.location.href = "queueManagement";
+  <div>
+    <style>
+      div {
+        text-align: center;
       }
-
-</script>
+    </style>
+    <h1>Edwards Car Wash Management System</h1>
+  </div>
+  <div class="button-container">
+    <button class="enlarged-button" type="button" onclick="redirectToQueueManagement()">Wash Process Queue Management</button>
+    <button class="enlarged-button" type="button" onclick="redirectToFlowManagement()">Wash Process Flow Management</button>
+    <button class="enlarged-button" type="button" onclick="redirectToCostManagement()">Cost Management</button>
+    <!--button class="enlarged-button" type="button" onclick="redirectToAuditHistory()">Audit History</button-->
+  </div>
+  <script>
+    function redirectToQueueManagement() {
+      window.location.href = "queueManagement";
+    }
+    function redirectToFlowManagement() {
+      window.location.href = "flowManagement";
+    }
+    function redirectToCostManagement() {
+      window.location.href = "costManagement";
+    }
+    function redirectToAuditHistory() {
+      window.location.href = "auditHistory";
+    }
+  </script>
 </body>
 </html>

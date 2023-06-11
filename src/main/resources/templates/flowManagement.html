@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wash Process Flow Management</title>
+  <style>
+    /* CSS styles for the table and its elements */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <div>
+    <style>
+      div {
+        text-align: center;
+      }
+    </style>
+    <h1>Wash Process Flow Management</h1>
+  </div>
+  <script>
+    function readTextFile(filename) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "/storage/" + filename, true);
+      console.log("filename=" + filename);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var data = xhr.responseText;
+          console.log("data=" + data);
+          var table = document.getElementById("listTable0");
+          var tbody = document.getElementById("tbody0");
+
+          while (tbody.firstChild) {
+            tbody.removeChild(tbody.firstChild);
+          }
+
+          var lines = data.split("\n");
+
+          for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
+            if (line !== "") {
+              var values = line.split(",");
+              var row = document.createElement("tr");
+              
+              // Create a table cell for each value in the line
+              for (var j = 0; j < values.length; j++) {
+                var cell = document.createElement("td");
+                cell.textContent = values[j];
+                row.appendChild(cell);
+              }
+              
+              // Create the action buttons cell
+              var actionCell = document.createElement("td");
+              var button1 = document.createElement("button");
+              button1.textContent = "Revert Flow";
+              button1.style.marginRight = "20px";
+              button1.addEventListener("click", function (index) {
+                return function() {
+                  handleButton1(lines[index].split(",")[1]);
+                };
+              }(i));
+              actionCell.appendChild(button1);
+              
+              var button2 = document.createElement("button");
+              button2.textContent = "Next Flow";
+              button2.style.marginRight = "20px";
+              button2.addEventListener("click", function (index) {
+                return function() {
+                  handleButton2(lines[index].split(",")[1]);
+                };
+              }(i));
+              actionCell.appendChild(button2);
+              row.appendChild(actionCell);
+              tbody.appendChild(row);
+            }
+          }
+        }
+      };
+      xhr.send();
+    }
+    
+    function handleButton1(value) {
+      console.log("Button 1 clicked with value: " + value);
+      // Make a POST request to the main class endpoint
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/revertFlow", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4) {
+          if (xhttp.status === 200) {
+            console.log("Item parsed successfully!");
+            // Reload the page
+            location.reload();
+          } else {
+            console.error("Error parsing item.");
+          }
+        }
+      };
+      var params = "revertFlow=" + encodeURIComponent(value);
+      xhttp.send(params);
+    }
+
+    function handleButton2(value) {
+      console.log("Button 2 clicked with value: " + value);
+      // Make a POST request to the main class endpoint
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/nextFlow", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4) {
+          if (xhttp.status === 200) {
+            console.log("Item parsed successfully!");
+            // Reload the page
+            location.reload();
+          } else {
+            console.error("Error parsing item.");
+          }
+        }
+      };
+      var params = "nextFlow=" + encodeURIComponent(value);
+      xhttp.send(params);
+    }
+
+  </script>
+</head>
+<body>
+  <table id="listTable0">
+    <thead>
+      <h2>Car in Queues</h2>
+      <tr>
+        <th>Car Model</th>
+        <th>Number Plate</th>
+        <th>Segment</th>
+        <th>Type of wash</th>
+        <th>Notes</th>
+        <th>Nett Price</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="tbody0">
+      <!-- Table rows will be dynamically added here -->
+    </tbody>
+  </table>
+  <script>
+    readTextFile("items.csv");
+  </script>
+</body>
+</html>

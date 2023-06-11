@@ -1,12 +1,11 @@
-/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/**
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * OWNER: EDWARD LAI
  * PROJECT DEVELOPER: EDWARD LAI
  * APPLICATION: CAR WASH MANAGEMENT SYSTEM
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *                       CHANGE HISTORY
- * DATE              AUTHOR                    DESCRIPTION
- * 8 JUNE 2023       EDWARD LAI                INITIAL RELEASE
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ */
+
 package com.edsproject.cwms.config;
 
 import org.springframework.context.annotation.Configuration;
