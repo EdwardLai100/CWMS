@@ -13,15 +13,20 @@ The functional use-case feature will cover:
 5) Audit History, Saved all the cars that are being queued and completed the service in 2 separate view lists.
 
 The languages, framework & microservices, architectures, and libraries include:
-1)Java (JDK17), JavaScript, HTML, CSS, Groovy
-2)Java Spring Boot 3.1.0, Java Spring Security (for login), Spring MVC (for resource configuration)
-3)Apache PDFBox
+-Java (JDK17), JavaScript, HTML, CSS, Groovy
+
+-Java Spring Boot 3.1.0, Java Spring Security (for login), Spring MVC (for resource configuration)
+
+-Apache PDFBox
 
 Future release:
-1)Introducing membership system and implementing JDBC for membership and history storing feature
-2)Enhance flow management UI where provide a "Release" feature to move to store the car from the queue list into history and remove it from the queue list.
-3)Introduce role access based on Spring Security, allow Admin role to configure price list and flow list thru UI
-4)Introduce MVC on text/title naming configuration thru the .properties file.
+-Introducing membership system and implementing JDBC for membership and history storing feature
+
+-Enhance flow management UI where provide a "Release" feature to move to store the car from the queue list into history and remove it from the queue list.
+
+-Introduce role access based on Spring Security, allow Admin role to configure price list and flow list thru UI
+
+-Introduce MVC on text/title naming configuration thru the .properties file.
 
 
 To run the project:
