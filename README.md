@@ -23,7 +23,6 @@ Future release:
 3)Introduce role access based on Spring Security, allow Admin role to configure price list and flow list thru UI
 4)Introduce MVC on text/title naming configuration thru the .properties file.
 
-
 To run the project:
 You may run thru Command Prompt / PowerShell / Terminal, or any IDE with SpringBoot integrated.
 For Terminal:
