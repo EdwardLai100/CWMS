@@ -28,7 +28,6 @@ Future release:
 
 -Introduce MVC on text/title naming configuration thru the .properties file.
 
-
 To run the project:
 You may run thru Command Prompt / PowerShell / Terminal, or any IDE with SpringBoot integrated.
 For Terminal:
