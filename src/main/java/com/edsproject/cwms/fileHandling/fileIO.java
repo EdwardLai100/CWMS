@@ -9,9 +9,9 @@
 package com.edsproject.cwms.fileHandling;
 
 import com.edsproject.cwms.costing.costHandling;
+import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -241,5 +241,23 @@ public class fileIO {
         return items;
     }
 
-
+    public boolean getGeneratedPDF(String numberPlate, HttpServletResponse response) {
+        String filePath = "C:/CWMS/_output/" + numberPlate + ".pdf";
+        File file = new File(filePath);
+        if (file.exists()) {
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "attachment; filename=" + numberPlate + ".pdf");
+            try (InputStream inputStream = new FileInputStream(file); OutputStream outputStream = response.getOutputStream()) {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+            } catch (IOException e) {
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

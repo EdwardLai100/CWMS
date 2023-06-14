@@ -184,6 +184,7 @@
         if (xhttp.readyState === 4) {
           if (xhttp.status === 200) {
             console.log("Item saved successfully!");
+            location.reload();
           } else {
             console.error("Error saving item.");
           }
@@ -201,6 +202,7 @@
         if (xhttp.readyState === 4) {
           if (xhttp.status === 200) {
             console.log("Item removed successfully!");
+            location.reload();
           } else {
             console.error("Error removing item.");
           }
