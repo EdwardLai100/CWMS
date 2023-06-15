@@ -17,14 +17,14 @@ The languages, framework & microservices, architectures, and libraries include:
 
 -Java (JDK17), JavaScript, HTML, CSS, Groovy
 
--Java Spring Boot 3.1.0, Java Spring Security (for login), Spring MVC (for resource configuration)
+-Java Spring Boot 3.1.0, Java Spring Security (for login), Spring MVC
 
 -Apache PDFBox
 
 
 Future release:
 
--Introducing membership system and implementing JDBC for membership and history storing feature
+-Introducing a membership system and implementing JDBC or Hibernate for membership and history storing feature
 
 -Enhance flow management UI where provide a "Release" feature to move to store the car from the queue list into history and remove it from the queue list.
 
