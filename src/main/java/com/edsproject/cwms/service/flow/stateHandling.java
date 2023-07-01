@@ -6,10 +6,14 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 
-package com.edsproject.cwms.flow;
+package com.edsproject.cwms.service.flow;
 
-import com.edsproject.cwms.fileHandling.fileIO;
+import com.edsproject.cwms.service.fileHandling.fileIO;
+import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
+@Service
 public class stateHandling {
 
     fileIO fileIO = new fileIO();
@@ -18,7 +22,7 @@ public class stateHandling {
     private String currentFlow;
     private String updatedFlow;
 
-    public void stateChange(String type, String numberPlate) {
+    public void stateChange(String type, String numberPlate) throws IOException {
         String[] array_data = new String[0];
         if (!numberPlate.isBlank()) {
             if (_debug) System.out.println("flow/stateHandling/stateChange//type|numberPlate=" + type + "|" + numberPlate);

@@ -6,8 +6,9 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 
-package com.edsproject.cwms.control;
+package com.edsproject.cwms.controller;
 
+import com.edsproject.cwms.service.repositoryService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import com.edsproject.cwms.costing.generateCostPDF;
-import com.edsproject.cwms.fileHandling.fileIO;
-import com.edsproject.cwms.fileHandling.fileRemoveList;
-import com.edsproject.cwms.flow.stateHandling;
+import com.edsproject.cwms.service.costing.generateCostPDF;
+import com.edsproject.cwms.service.fileHandling.fileIO;
+import com.edsproject.cwms.service.fileHandling.fileRemoveList;
+import com.edsproject.cwms.service.flow.stateHandling;
 
 import java.io.*;
 
@@ -29,7 +30,13 @@ public class mainController {
     fileRemoveList fileRemoveList = new fileRemoveList();
     stateHandling stateHandling = new stateHandling();
     generateCostPDF generateCostPDF = new generateCostPDF();
-    boolean _debug = false; //Next release to change it to read IO config for ease setting
+    private final repositoryService repositoryService;
+
+    boolean _debug = true; //Next release to change it to read IO config for ease setting
+
+    public mainController(repositoryService repositoryService) {
+        this.repositoryService = repositoryService;
+    }
 
     @GetMapping("/")
     public ModelAndView home() {
@@ -46,8 +53,11 @@ public class mainController {
     }
 
     @PostMapping("/startQueue")
-    public ResponseEntity startQueue(@RequestParam(required = false, name = "startQueue") String item) {
+    public ResponseEntity startQueue(@RequestParam(required = false, name = "startQueue") String item) throws IOException {
         fileIO.putItems("NewQueue", item + ",Queued");
+        //Perform DB Persistence
+        if (_debug) System.out.println("mainController/startQueue/item="+item);
+        repositoryService.triggerQueueInsertion(item + ",Queued");
         return ResponseEntity.ok().body(""); //No return body needed because redirected to the same page (reloaded in jsp), applied to all same statement.
     }
 
@@ -65,14 +75,14 @@ public class mainController {
     }
 
     @PostMapping("/revertFlow")
-    public ResponseEntity revertFlow(@RequestParam(required = false, name = "revertFlow") String numberPlate) {
+    public ResponseEntity revertFlow(@RequestParam(required = false, name = "revertFlow") String numberPlate) throws IOException {
         if (_debug) System.out.println("com.edsproject.cwms/mainModule/revertFlow//numberPlate=" + numberPlate);
         stateHandling.stateChange("revertFlow", numberPlate);
         return ResponseEntity.ok().body("");
     }
 
     @PostMapping("/nextFlow")
-    public ResponseEntity nextFlow(@RequestParam(required = false, name = "nextFlow") String numberPlate) {
+    public ResponseEntity nextFlow(@RequestParam(required = false, name = "nextFlow") String numberPlate) throws IOException {
         if (_debug) System.out.println("com.edsproject.cwms/mainModule/nextFlow//numberPlate=" + numberPlate);
         stateHandling.stateChange("nextFlow", numberPlate);
         return ResponseEntity.ok().body("");

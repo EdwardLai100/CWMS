@@ -6,7 +6,9 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 
-package com.edsproject.cwms.fileHandling;
+package com.edsproject.cwms.service.fileHandling;
+
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class fileRemoveList {
 
     boolean _debug = true; //Next release to change it to read IO config for ease setting

@@ -6,10 +6,11 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 
-package com.edsproject.cwms.fileHandling;
+package com.edsproject.cwms.service.fileHandling;
 
-import com.edsproject.cwms.costing.costHandling;
+import com.edsproject.cwms.service.costing.costHandling;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.lang.reflect.Array;
@@ -21,11 +22,12 @@ import java.util.List;
 
 //Prefer to use Java NIO for better performance with non-blocking IO.
 
+@Service
 public class fileIO {
 
     boolean _debug = true; //Next release to change it to read IO config for ease setting
 
-    public void putItems(String mode, String data) {
+    public void putItems(String mode, String data) throws IOException {
 
         final costHandling costHandling = new costHandling();
         final File file = new File("C:/CWMS/_storage/items.csv");
@@ -42,15 +44,18 @@ public class fileIO {
                 if (_debug) System.out.println("fileHandling/fileIO/output_items=File created successfully.");
             }
         } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
         switch (mode) {
-            case "NewQueue":
+            case "NewQueue" -> {
                 //Directly calculate Costing during queue start
                 if (_debug) System.out.println("fileHandling/fileIO/output_items//data input=" + data);
+                //Perform Cost Calculation
                 String result = costHandling.costCalculation(data);
 
                 try {
+                    //Perform Local CSV output
                     String filePath = file.toString();
                     Path path = Paths.get(filePath);
                     List<String> lines = Files.readAllLines(path);
@@ -60,9 +65,10 @@ public class fileIO {
                         Files.write(path, content.getBytes());
                     }
                 } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
-                break;
-            case "UpdateQueueByNumberPlate":
+            }
+            case "UpdateQueueByNumberPlate" -> {
                 try {
                     String numberPlate = null; // Retrieve the numberPlate value you want to update
                     String filePath = file.toString();
@@ -89,10 +95,9 @@ public class fileIO {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                break;
-
-            default:
-                break;
+            }
+            default -> {
+            }
         }
     }
 
@@ -117,11 +122,11 @@ public class fileIO {
                 Files.writeString(path, data, StandardOpenOption.CREATE);
             }
         } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
-        switch (type) {
-            case "setPriceList": //Future release will allow customer to set their own price list through UI
-            case "getPriceList":
+        switch (type) { //Future release will allow customer to set their own price list through UI
+            case "setPriceList", "getPriceList" -> {
                 try {
                     List<String> lines = Files.readAllLines(path);
                     for (String line : lines) {
@@ -136,9 +141,9 @@ public class fileIO {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                break;
-            default:
-                break;
+            }
+            default -> {
+            }
         }
 
         return priceList;
@@ -166,12 +171,13 @@ public class fileIO {
                 Files.writeString(path, data, StandardOpenOption.CREATE);
             }
         } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
         if (_debug) System.out.println("fileHandling/fileIO/getFlowList//type|currentFlow=" + type + "|" + currentFlow);
 
         switch (type) {
-            case "getPreviousFlow":
+            case "getPreviousFlow" -> {
                 try {
                     List<String> lines = Files.readAllLines(path);
                     for (String line : lines) {
@@ -191,8 +197,8 @@ public class fileIO {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                break;
-            case "getNextFlow":
+            }
+            case "getNextFlow" -> {
                 try {
                     List<String> lines = Files.readAllLines(path);
                     for (String line : lines) {
@@ -212,9 +218,9 @@ public class fileIO {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                break;
-            default:
-                break;
+            }
+            default -> {
+            }
         }
         return updatedFlow;
     }

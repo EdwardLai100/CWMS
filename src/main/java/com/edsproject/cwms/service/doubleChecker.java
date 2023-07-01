@@ -6,8 +6,11 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 
-package com.edsproject.cwms.miscellaneous;
+package com.edsproject.cwms.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class doubleChecker {
     public static boolean isDouble(String input) {
         try {

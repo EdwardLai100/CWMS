@@ -6,13 +6,13 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 
-package com.edsproject.cwms.costing;
+package com.edsproject.cwms.service.costing;
 
-import java.lang.reflect.Array;
+import com.edsproject.cwms.service.fileHandling.fileIO;
+import com.edsproject.cwms.service.doubleChecker;
+import org.springframework.stereotype.Service;
 
-import com.edsproject.cwms.fileHandling.fileIO;
-import com.edsproject.cwms.miscellaneous.doubleChecker;
-
+@Service
 public class costHandling {
 
     boolean _debug = true; //Next release to change it to read IO config for ease setting
