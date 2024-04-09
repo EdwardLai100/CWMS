@@ -15,9 +15,9 @@ The functional use-case feature will cover:
 
 The languages, framework & microservices, architectures, and libraries include:
 
--Java (JDK17), JavaScript, HTML, CSS, Groovy
+-Java (JDK17+), JavaScript, HTML, CSS, Groovy
 
--Java Spring Boot 3.1.0, Java Spring Security (for login), Spring MVC
+-Java Spring Boot 3.1.0+, Java Spring Security (for login), Spring MVC
 
 -Apache PDFBox
 
@@ -32,15 +32,28 @@ Future release:
 
 -Introduce MVC on text/title naming configuration thru the .properties file.
 
+First time set-up
+1) Install postgresql with pgAdmin
+2) create below:
+	user: edwar
+	database: mydatabase
+	schemas: public
+3) Make sure %PATH% environment variable included: C:\Program Files\PostgreSQL\16\bin (the exact location of PostgreSQL bin)
+3) Test if Login succesfully from CMD:
+	run: psql -d postgres -U edwar
 
-To run the project:
 You may run thru Command Prompt / PowerShell / Terminal, or any IDE with SpringBoot integrated.
+To run the project:
 For Terminal:
-1) Username and Password are located at cwms\src\main\resources\application.properties, you may change the user settings
-2) Locate to the project gradlew.bat under directory \cwms
+1) Username and Password are located at PROJ005_CWMS\src\main\resources\application.properties, you may change the user settings
+2) Locate to the project gradlew.bat under directory \PROJ005_CWMS
 3) Run ".\gradlew.bat bootRun" in your terminal
-4) Browse with http://localhost:8080/login
+4) Browse with http://localhost:8080/login [Please check the gradle log to find the exact port, keywords: Tomcat started on port 8081 (http) with context path]
 5) Enjoy!
+
+For IDE (Intellij):
+1) Navigate to PROJ005_CWMS\src\main\java\mainModule
+2) Right click the above class and select [Run 'mainModule.main()']
 
 Hope you enjoy the application, please feel free to contact me by email: edwardlaipohyen@hotmail.com
 
