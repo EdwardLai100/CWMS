@@ -32,7 +32,7 @@ Future release:
 
 -Introduce MVC on text/title naming configuration thru the .properties file.
 
-First time set-up
+First time set-up:
 1) Install postgresql with pgAdmin
 2) create below:
 	user: edwar
