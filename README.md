@@ -35,12 +35,12 @@ Future release:
 First time set-up:
 1) Install postgresql with pgAdmin
 2) create below:
-	user: edwar
-	database: mydatabase
-	schemas: public
+ user: edwar
+ database: mydatabase
+ schemas: public
 3) Make sure %PATH% environment variable included: C:\Program Files\PostgreSQL\16\bin (the exact location of PostgreSQL bin)
-3) Test if Login succesfully from CMD:
-	run: psql -d postgres -U edwar
+4) Test if Login succesfully from CMD:
+ run: psql -d postgres -U edwar
 
 You may run thru Command Prompt / PowerShell / Terminal, or any IDE with SpringBoot integrated.
 To run the project:
